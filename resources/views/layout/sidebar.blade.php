@@ -31,7 +31,7 @@
           </a>
         </li>
         <li>
-          <a href="./notifications.html">
+          <a href="./clients">
             <i class="tim-icons icon-bell-55"></i>
             <p>Gestion Clients</p>
           </a>

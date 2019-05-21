@@ -30,9 +30,17 @@ Route::get('/listevilla', function () {
     return view('villages.index');
 });
 
+Route::get('/cli', function () {
+    return view('clients.create');
+});
+Route::get('/listecli', function () {
+    return view('clients.index');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('villages', 'VillageController');
+Route::resource('clients', 'ClientController');
 
