@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 28 May 2019 16:46:55 +0000.
+ * Date: Tue, 28 May 2019 10:20:21 +0000.
  */
 
 namespace App;
@@ -10,34 +10,33 @@ namespace App;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class Reglement
+ * Class Consommation
  * 
  * @property int $id
  * @property string $uuid
  * @property \Carbon\Carbon $date
- * @property float $montant
- * @property int $types_id
+ * @property string $valeur
+ * @property int $compteurs_id
  * @property int $factures_id
- * @property int $comptables_id
+ * @property int $agents_id
  * @property string $deleted_at
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * 
- * @property \App\Comptable $comptable
+ * @property \App\Agent $agent
+ * @property \App\Compteur $compteur
  * @property \App\Facture $facture
- * @property \App\Type $type
  *
  * @package App
  */
-class Reglement extends Eloquent
+class Consommation extends Eloquent
 {
 	use \Illuminate\Database\Eloquent\SoftDeletes;
 
 	protected $casts = [
-		'montant' => 'float',
-		'types_id' => 'int',
+		'compteurs_id' => 'int',
 		'factures_id' => 'int',
-		'comptables_id' => 'int'
+		'agents_id' => 'int'
 	];
 
 	protected $dates = [
@@ -47,24 +46,24 @@ class Reglement extends Eloquent
 	protected $fillable = [
 		'uuid',
 		'date',
-		'montant',
-		'types_id',
+		'valeur',
+		'compteurs_id',
 		'factures_id',
-		'comptables_id'
+		'agents_id'
 	];
 
-	public function comptable()
+	public function agent()
 	{
-		return $this->belongsTo(\App\Comptable::class, 'comptables_id');
+		return $this->belongsTo(\App\Agent::class, 'agents_id');
+	}
+
+	public function compteur()
+	{
+		return $this->belongsTo(\App\Compteur::class, 'compteurs_id');
 	}
 
 	public function facture()
 	{
 		return $this->belongsTo(\App\Facture::class, 'factures_id');
-	}
-
-	public function type()
-	{
-		return $this->belongsTo(\App\Type::class, 'types_id');
 	}
 }

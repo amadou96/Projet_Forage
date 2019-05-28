@@ -2,7 +2,7 @@
 
 /**
  * Created by Reliese Model.
- * Date: Tue, 28 May 2019 16:46:55 +0000.
+ * Date: Tue, 28 May 2019 10:20:21 +0000.
  */
 
 namespace App;
@@ -10,7 +10,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
 /**
- * Class Comptable
+ * Class Agent
  * 
  * @property int $id
  * @property string $uuid
@@ -21,11 +21,11 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  * @property \Carbon\Carbon $updated_at
  * 
  * @property \App\User $user
- * @property \Illuminate\Database\Eloquent\Collection $reglements
+ * @property \Illuminate\Database\Eloquent\Collection $consommations
  *
  * @package App
  */
-class Comptable extends Eloquent
+class Agent extends Eloquent
 {
 	use \Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -44,8 +44,8 @@ class Comptable extends Eloquent
 		return $this->belongsTo(\App\User::class, 'users_id');
 	}
 
-	public function reglements()
+	public function consommations()
 	{
-		return $this->hasMany(\App\Reglement::class, 'comptables_id');
+		return $this->hasMany(\App\Consommation::class, 'agents_id');
 	}
 }
