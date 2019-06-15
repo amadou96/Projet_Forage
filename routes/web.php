@@ -15,13 +15,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
+/* Route::get('/test', function () {
     return view('layout.form');
-});
+}); */
 Route::get('/test1', function () {
     return "HELLO";
 });
 Auth::routes();
-
+ Route::get('/clients/create', function () {
+    return view('clients.create');
+}); 
+Route::get('/listeclient', function () {
+        return view('clients.index');  
+    });
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/clients/list', 'ClientController@list')->name('clients.list');
+//Route::get('/clients/create', 'ClientController@create')->name('clients.create');
 Route::resource('villages', 'VillageController');
+Route::resource('clients', 'ClientController');

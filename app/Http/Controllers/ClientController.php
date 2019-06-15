@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class ClientController extends Controller
 {
@@ -17,6 +18,13 @@ class ClientController extends Controller
         return view('clients.index');
     }
 
+    public function list(Request $request)
+   {
+       $clients=Client::with('user')->get();
+       return Datatables::of($clients)->make(true);
+   }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -25,6 +33,7 @@ class ClientController extends Controller
     public function create()
     {
         //
+        return view('clients.create');
     }
 
     /**
