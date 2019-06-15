@@ -13,7 +13,6 @@ class VillagesTableSeeder extends Seeder
     public function run()
     {
         //
-        
         $faker=\Faker\Factory::create();
         $regions_json=Storage::get("regions.min.json");
         $regions=json_decode($regions_json);
@@ -34,7 +33,7 @@ class VillagesTableSeeder extends Seeder
                         $commune_=App\Commune::firstOrNew(["nom"=>$commune->nom]);
                         $arrondissement_->communes()->save($commune_);
                         foreach ((array)$commune->village as $village) {
-                            if(App\Village::count()<2000){
+                            if(App\Village::count()<25){
                             $village_=App\Village::firstOrNew(["nom"=>$village->nom]);
                             $commune_->villages()->save($village_);
 
@@ -65,7 +64,7 @@ class VillagesTableSeeder extends Seeder
                             $id_gest=$gestionnaires_id[$randk];
                             //echo("Pass 3".PHP_EOL);
                             $role_client=App\Role::where("name","Client")->first();
-                            $user=App\User::firstOrNew(["name"=>$nom,"firstname"=>$prenom,'uuid'=>Str::uuid()],
+                            $user=App\User::firstOrNew(["name"=>$nom,"firstname"=>$prenom],
                             ["email"=>$faker->randomNumber($nbDigit=3,$strict=true).$faker->safeEmail,
                             "password"=>bcrypt("secret"),
                             "roles_id"=>$role_client->id,
@@ -84,11 +83,11 @@ class VillagesTableSeeder extends Seeder
                            // usleep(20000);
                         }else{
                             break 5;
+                        }
                     }
                 }
             }
         }
     }
     }
-}
 }

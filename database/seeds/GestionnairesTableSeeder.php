@@ -11,7 +11,8 @@ class GestionnairesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
-        factory(App\Gestionnaire::class,1)->create();
+        //    
+
+        factory(App\Gestionnaire::class,10)->create();
     }
 }
