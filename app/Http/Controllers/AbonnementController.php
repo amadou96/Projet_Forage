@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Village;
+use App\Abonnement;
 use Illuminate\Http\Request;
-use App\Helpers\PCollection;
 use Yajra\Datatables\Datatables;
-
-class VillageController extends Controller
+class AbonnementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +14,13 @@ class VillageController extends Controller
      */
     public function index()
     {
-        $villages=Village::all()->load(['chef.user','commune.arrondissement.departement.region'])->paginate(10);
-        return view('villages.index',compact('villages'));
+        //
+        return view('abonnements.index');
     }
     public function list(Request $request)
     {
-        $villages=Village::with(['chef.user','commune.arrondissement.departement.region'])->get();
-        return Datatables::of($villages)->make(true);
+        $abonnements=Abonnement::with('client.user','compteur')->get();
+        return Datatables::of($abonnements)->make(true);
     }
     /**
      * Show the form for creating a new resource.
@@ -32,6 +30,7 @@ class VillageController extends Controller
     public function create()
     {
         //
+        return view('abonnements.create');
     }
 
     /**
@@ -48,10 +47,10 @@ class VillageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Village  $village
+     * @param  \App\Abonnement  $abonnement
      * @return \Illuminate\Http\Response
      */
-    public function show(Village $village)
+    public function show(Abonnement $abonnement)
     {
         //
     }
@@ -59,10 +58,10 @@ class VillageController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Village  $village
+     * @param  \App\Abonnement  $abonnement
      * @return \Illuminate\Http\Response
      */
-    public function edit(Village $village)
+    public function edit(Abonnement $abonnement)
     {
         //
     }
@@ -71,10 +70,10 @@ class VillageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Village  $village
+     * @param  \App\Abonnement  $abonnement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Village $village)
+    public function update(Request $request, Abonnement $abonnement)
     {
         //
     }
@@ -82,10 +81,10 @@ class VillageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Village  $village
+     * @param  \App\Abonnement  $abonnement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Village $village)
+    public function destroy(Abonnement $abonnement)
     {
         //
     }

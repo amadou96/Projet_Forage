@@ -1,33 +1,3 @@
-{{-- @extends('layout.index')
-@section('content')
-<div class="content">
-  <div class="row">
-    <div class="col-12">
-<form method="POST" action="" name="form-create-user" id="id-form-create-user">
-    <div class="form-group">
-      <label for="input-nom">Nom</label>
-      <input type="text" name="nom" class="form-control" id="input-nom" aria-describedby="emailHelp" placeholder="Entrer votre nom SVP">
-      <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-    </div>
-    <div class="form-group">
-      <label for="input-prenom">Prenom</label>
-      <input type="text" name="prenom" class="form-control" id="input-prenom" aria-describedby="emailHelp" placeholder="Entrer votre prenom SVP">
-      <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
-    </div>
-    <div class="form-group">
-      <label for="input-email">Village</label>
-      <input type="email" name="email" class="form-control" id="input-email" placeholder="Entrer votre mot de passe SVP">
-    </div>
-    <!-- <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div> -->
-    <button type="submit" name="submit" class="btn btn-primary btn-block">Enregistrer</button>
-  </form>
-    </div>
-  </div>
-</div>
-@endsection --}}
 @extends('layout.index')
 @section('content')
 <div class="content">
@@ -41,10 +11,19 @@
                 </p>
             </div>
             <div class="card-body">
+                <div class="row pt-5 pl-5">
+                    <h4>
+                        Village: {{$village->nom ?? 'Aucun village choisi'}}<br/>
+                        Commune: {{$village->commune->nom ?? ''}}
+                    </h4>
+                </div>
                 <div class="row pt-5"></div>
                 
                 <form method="POST" action="{{route('clients.store')}}">
                     {{ csrf_field() }}
+                    
+                    <input type="hidden" name="village" value="{{$village->id}}" class="form-control" name="inputName" id="inputName" placeholder="">
+                    
                     <div class="form-group">
                         <label for="input-nom">Nom</label>
                         <input type="text" name="nom" class="form-control" id="input-nom" aria-describedby="emailHelp" placeholder="Nom du client">
@@ -90,11 +69,10 @@
                         </label>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
                 </form>
-                <div class="row justify-content-center">
+                {{-- <div class="row justify-content-center">
                     @if ($errors->any())
-                  
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -103,7 +81,44 @@
                         </ul>
                     </div>
                     @endif
+                </div> --}}
+                <div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Verifier les donn&eacute;es saisies svp</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @push('scripts')
+                                <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $("#error-modal").modal({
+                                        'show':true,
+                                    })
+                                });
+                                </script>
+                                    
+                                @endpush
+                                @endif
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
         </div>
     </div>

@@ -43,7 +43,7 @@
           </a>
         </li>
         <li>
-          <a href="./tables.html">
+          <a href="./abonnements">
             <i class="tim-icons icon-puzzle-10"></i>
             <p>Gestion Abonnements</p>
           </a>
@@ -53,19 +53,19 @@
             <i class="tim-icons icon-align-center"></i>
             <p>Gestion Utilisateurs</p>
           </a>
-        </li>
-        <li>
+         </li>
+         <li>
           <a href="./rtl.html">
             <i class="tim-icons icon-world"></i>
-            <p>RTL Support</p>
+            <p>Gestion Factures</p>
           </a>
         </li>
-        <li class="active-pro">
+       {{-- <li class="active-pro">
           <a href="./upgrade.html">
             <i class="tim-icons icon-spaceship"></i>
-            <p>Upgrade to PRO</p>
+            <p>Upgrade to PRO</p> 
           </a>
-        </li>
+        </li> --}}
       </ul>
     </div>
   </div>

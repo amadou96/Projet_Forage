@@ -28,8 +28,13 @@ Auth::routes();
 Route::get('/listeclient', function () {
         return view('clients.index');  
     });
+Route::get('/clients/selectvillages', function () {
+        return view('clients.selectvillage');  
+    })->name('clients.selectvillage');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/clients/list', 'ClientController@list')->name('clients.list');
-//Route::get('/clients/create', 'ClientController@create')->name('clients.create');
+Route::get('/villages/list', 'VillageController@list')->name('villages.list');
+Route::get('/abonnements/list', 'AbonnementController@list')->name('abonnements.list');
 Route::resource('villages', 'VillageController');
 Route::resource('clients', 'ClientController');
+Route::resource('abonnements', 'AbonnementController');
