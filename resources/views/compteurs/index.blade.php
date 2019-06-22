@@ -3,7 +3,7 @@
 
 <div class="content">
     <div class="card-header card-header-icon" data-background-color="rose">
-        <a href="{{route('abonnements.selectclient')}}" class="btn btn-success"  > <i class="fa fa-plus" ></i></a>
+        <a href="{{route('compteurs.create')}}" class="btn btn-success"  > <i class="fa fa-plus" ></i></a>
       </div> 
       
   <div class="row">
@@ -11,7 +11,7 @@
         <div class="col-lg-12 col-md-12">
             <div class="card ">
               <div class="card-header">
-                <h4 class="card-title"> LISTE DES ABONNEMENTS</h4>
+                <h4 class="card-title"> LISTE DES COMPTEURS</h4>
 {{--                 <p class="card-category"> Clients
                   <a href="{{route('clients.create')}}"><div class="btn btn-warning">Nouveau Client <i class="material-icons">add</i></div></a> 
               </p> --}}
@@ -27,12 +27,6 @@
                         <th>
                           Date CREATION
                         </th>
-                        <th>
-                          NOM CLIENT
-                        </th>
-                         <th>
-                         PRENOM CLIENT
-                        </th> 
                         <th>
                           NUMERO COMPTEUR
                          </th>
@@ -56,13 +50,11 @@ $(document).ready(function () {
     $('#table-abonnements').DataTable( { 
       "processing": true,
       "serverSide": true,
-      "ajax": "{{route('abonnements.list')}}",
+      "ajax": "{{route('compteurs.list')}}",
       columns: [
               { data: 'id', name: 'id' },
               { data: 'created_at', name: 'created_at' },
-              { data: 'client.user.name', name: 'client.user.name' },
-             { data: 'client.user.firstname', name: 'client.user.firstname' },
-            { data: 'compteur.numero_serie', name: 'compteur.numero_serie' },
+            { data: 'numero_serie', name: 'numero_serie' },
               { data: null ,orderable: false, searchable: false}
 
           ],
@@ -70,12 +62,12 @@ $(document).ready(function () {
                   {
                   "data": null,
                   "render": function (data, type, row) {
-                  url_e =  "{!! route('abonnements.edit',':id')!!}".replace(':id', data.id);
-                  url_d =  "{!! route('abonnements.destroy',':id')!!}".replace(':id', data.id);
+                  url_e =  "{!! route('compteurs.edit',':id')!!}".replace(':id', data.id);
+                  url_d =  "{!! route('compteurs.destroy',':id')!!}".replace(':id', data.id);
                   return '<a href='+url_e+'  class=" btn btn-primary " ><i class="fa fa-edit"></i></a>'+
                   '<a class="btn btn-danger" href='+url_d+'><i class="fa fa-trash"></i></a>';
                   },
-                  "targets": 5
+                  "targets": 3
                   },
               // {
               //     "data": null,

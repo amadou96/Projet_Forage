@@ -11,45 +11,36 @@
                 </p>
             </div>
             <div class="card-body">
+                <div class="row pt-5 pl-5">
+                    <h4>
+                        Client: {{$client->user->name ?? 'Aucun client choisi'}}<br/>
+                        Compteur: {{$compteur->numero_serie ?? ''}}
+
+                    </h4>
+                </div>
                 <div class="row pt-5"></div>
                 
-                <form method="POST" action="{{route('clients.store')}}">
+                <form method="POST" action="{{route('abonnements.store')}}">
                     {{ csrf_field() }}
+                    
+                    <input type="hidden" name="abonnement" value="{{$abonnement->id}}" class="form-control" name="inputName" id="inputName" placeholder="">
+                    
                     <div class="form-group">
-                        <label for="input-nomClient">NomClient</label>
-                        <input type="text" name="nomClient" class="form-control" id="input-nomClient" aria-describedby="emailHelp" placeholder="Nom du client">
+                        <label for="input-details">Details Abonnement</label>
+                        <input type="text" name="details" class="form-control" id="input-details" aria-describedby="emailHelp" placeholder="Details Abonnements">
                         <small id="input-nom-help" class="form-text text-muted">
-                            @if ($errors->has('nom'))
+                            @if ($errors->has('details'))
                             <div class="alert alert-danger">
                                 <ul>
-                                    @foreach ($errors->get('nom') as $message)
+                                    @foreach ($errors->get('details') as $message)
                                     <li>{{ $message }}</li>
                                     @endforeach
                                 </ul>
-                                
                             </div>
                             @endif
                         </small>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                        <small id="emailHelp" class="form-text text-muted">
-                            @if ($errors->has('email'))
-                            @foreach ($errors->get('email') as $message)
-                            <p class="text-danger">{{ $message }}</p>
-                            @endforeach
-                            @endif
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        @if ($errors->has('password'))
-                        @foreach ($errors->get('password') as $message)
-                        <p class="text-danger">{{ $message }}</p>
-                        @endforeach
-                        @endif
+                    
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
@@ -61,11 +52,10 @@
                         </label>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
                 </form>
-                <div class="row justify-content-center">
+                {{-- <div class="row justify-content-center">
                     @if ($errors->any())
-                  
                     <div class="alert alert-danger">
                         <ul>
                             @foreach ($errors->all() as $error)
@@ -74,7 +64,44 @@
                         </ul>
                     </div>
                     @endif
+                </div> --}}
+                <div class="modal fade" id="error-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Verifier les donn&eacute;es saisies svp</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                @push('scripts')
+                                <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $("#error-modal").modal({
+                                        'show':true,
+                                    })
+                                });
+                                </script>
+                                    
+                                @endpush
+                                @endif
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
             </div>
         </div>
     </div>

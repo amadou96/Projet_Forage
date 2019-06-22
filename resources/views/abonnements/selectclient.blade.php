@@ -8,25 +8,22 @@
               <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">SENFORAGE</h4>
-                  <p class="card-category"> Selection du village pour le client
+                  <p class="card-category"> Selection du client pour creer un abonnement
                       {{-- <a href="{{route('clients.create')}}"><div class="btn btn-warning">Nouveau Client <i class="material-icons">add</i></div></a>  --}}
                   </p>
                 </div>
                 <div class="card-body">
                   <div class="table-responsive">
-                    <table class="table" id="table-villages">
+                    <table class="table" id="table-selectclient">
                       <thead class=" text-primary">
                         <th>
                           ID
                         </th>
                         <th>
-                          Village
+                       NOM CLIENT
                         </th>
                         <th>
-                            Commune
-                        </th>
-                        <th>
-                          Region
+                            PRENOM CLIENT
                         </th>
                         <th>
                           Selectionner
@@ -53,15 +50,14 @@
       @push('scripts')
       <script type="text/javascript">
       $(document).ready(function () {
-          $('#table-villages').DataTable( { 
+          $('#table-selectclient').DataTable( { 
             "processing": true,
             "serverSide": true,
-            "ajax": "{{route('villages.list')}}",
+            "ajax": "{{route('clients.list')}}",
             columns: [
                     { data: 'id', name: 'id' },
-                    { data: 'nom', name: 'nom' },
-                    { data: 'commune.nom', name: 'commune.nom' },
-                    { data: 'commune.arrondissement.departement.region.nom', name: 'commune.arrondissement.departement.region.nom' },
+                    { data: 'user.name', name: 'name' },
+                    { data: 'user.firstname', name: 'firstname' },
                     { data: null ,orderable: false, searchable: false}
 
                 ],
@@ -69,10 +65,10 @@
                         {
                         "data": null,
                         "render": function (data, type, row) {
-                        url_e =  "{!! route('clients.create','village=:id')!!}".replace(':id', data.id);
+                        url_e =  "{!! route('abonnements.selectcompteur','client=:id')!!}".replace(':id', data.id);
                         return '<a href='+url_e+'  class=" btn btn-primary " ><i class="fa fa-check" aria-hidden="true"></i></a>';
                         },
-                        "targets": 4
+                        "targets": 3
                         },
 
                 ],
