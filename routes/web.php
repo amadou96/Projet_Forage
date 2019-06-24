@@ -44,18 +44,20 @@ Route::get('/villages/list', 'VillageController@list')->name('villages.list');
 Route::get('/compteurs/list', 'CompteurController@list')->name('compteurs.list');
 Route::get('/compteurs/listfree', 'CompteurController@listfree')->name('compteurs.listfree');
 Route::get('/abonnements/list', 'AbonnementController@list')->name('abonnements.list');
+Route::get('/consommations/list', 'ConsommationController@list')->name('consommations.list');
 Route::resource('villages', 'VillageController');
 Route::resource('clients', 'ClientController');
-
+Route::resource('abonnements', 'AbonnementController');
+Route::resource('consommations', 'ConsommationController');
 Route::resource('compteurs', 'CompteurController');
 Route::get('/abonnements/selectcompteur', function () {
     return view('abonnements.selectcompteur');  
 })->name('abonnements.selectcompteur');
 Route::get('/abonnements/list', 'AbonnementController@list')->
 name('abonnements.list');
+
 Route::get('/abonnements/list', 'AbonnementController@list')->name('abonnements.list');
 Route::get('/abonnements/selectcompteur', 'AbonnementController@selectcompteur')->name('abonnements.selectcompteur');
 Route::get('/abonnements/selectclient', 'AbonnementController@selectclient')->name('abonnements.selectclient');
 
-Route::resource('abonnements', 'AbonnementController');
 

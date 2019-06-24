@@ -66,4 +66,8 @@ class Client extends Eloquent
 	{
 		return $this->hasMany(\App\Abonnement::class, 'clients_id');
 	}
+	public function factures()
+	{
+		return $this->hasMany(\App\Facture::class, 'factures_id');
+	}
 }

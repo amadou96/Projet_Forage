@@ -76,7 +76,7 @@
                 </div>
             <div class="modal-body">
               <div class="container-fluid">
-                Add rows here
+                Voulez-vous vraiment supprimer ce client?
               </div>
             </div>
             <div class="modal-footer">

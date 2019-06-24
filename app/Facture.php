@@ -50,7 +50,9 @@ class Facture extends Eloquent
 		'debut_consommation',
 		'fin_consommation'
 	];
-
+	protected $appends = [
+		'user' 
+	];
 	public function consommations()
 	{
 		return $this->hasMany(\App\Consommation::class, 'factures_id');
@@ -60,4 +62,13 @@ class Facture extends Eloquent
 	{
 		return $this->hasMany(\App\Reglement::class, 'factures_id');
 	}
+	public function client()
+	{
+		return $this->belongsTo(\App\Client::class, 'factures_id');
+	}
+	public function getUserAttribute()
+	{
+		return $this->consommations->first()->compteur->abonnement->client->user;
+	}
+
 }
