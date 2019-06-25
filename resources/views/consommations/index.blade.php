@@ -11,7 +11,7 @@
         <div class="col-lg-12 col-md-12">
             <div class="card ">
               <div class="card-header">
-                <h4 class="card-title"> LISTE DES ABONNEMENTS</h4>
+                <h4 class="card-title"> LISTE DES CONSOMMATIONS: {{App\Consommation::count()}}</h4>
 {{--                 <p class="card-category"> Clients
                   <a href="{{route('clients.create')}}"><div class="btn btn-warning">Nouveau Client <i class="material-icons">add</i></div></a> 
               </p> --}}

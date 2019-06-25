@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Yajra\Datatables\Datatables;
 use App\Facture;
 use Illuminate\Http\Request;
 
@@ -15,8 +15,13 @@ class FactureController extends Controller
     public function index()
     {
         //
+        return view('factures.index');
     }
-
+    public function list(Request $request)
+    {
+        $factures=Facture::with(['consommations'])->get();
+        return Datatables::of($factures)->make(true);
+    }
     /**
      * Show the form for creating a new resource.
      *

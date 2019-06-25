@@ -45,7 +45,9 @@ Route::get('/compteurs/list', 'CompteurController@list')->name('compteurs.list')
 Route::get('/compteurs/listfree', 'CompteurController@listfree')->name('compteurs.listfree');
 Route::get('/abonnements/list', 'AbonnementController@list')->name('abonnements.list');
 Route::get('/consommations/list', 'ConsommationController@list')->name('consommations.list');
+Route::get('/factures/list', 'FactureController@list')->name('factures.list');
 Route::resource('villages', 'VillageController');
+Route::resource('factures', 'FactureController');
 Route::resource('clients', 'ClientController');
 Route::resource('abonnements', 'AbonnementController');
 Route::resource('consommations', 'ConsommationController');
