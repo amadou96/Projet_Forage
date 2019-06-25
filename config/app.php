@@ -176,7 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Reliese\Coders\CodersServiceProvider::class,
         Mpociot\LaravelTestFactoryHelper\TestFactoryHelperServiceProvider::class,
-
+        App\Providers\MyBladeServiceProvider::class,
     ],
 
     /*

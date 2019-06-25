@@ -24,30 +24,32 @@
             <p>Gestion Utilisateurs</p>
           </a>
         </li>
+        @roles('Gestionnaire')
         <li>
-          <a href="./villages">
+          <a href="{{route('villages.index')}}">
             <i class="tim-icons icon-pin"></i>
             <p>Gestion Villages</p>
           </a>
         </li>
         <li>
-          <a href="./clients">
+          <a href="{{route('clients.index')}}">
             <i class="tim-icons icon-bell-55"></i>
             <p>Gestion Clients</p>
           </a>
         </li>
         <li>
-          <a href="./user.html">
+          <a href="{{route('compteurs.index')}}">
             <i class="tim-icons icon-single-02"></i>
             <p>Gestion Compteurs</p>
           </a>
         </li>
         <li>
-          <a href="./abonnements">
+          <a href="{{route('abonnements.index')}}">
             <i class="tim-icons icon-puzzle-10"></i>
             <p>Gestion Abonnements</p>
           </a>
         </li>
+        @endroles
         <li>
           <a href="./typography.html">
             <i class="tim-icons icon-align-center"></i>
@@ -55,7 +57,7 @@
           </a>
          </li>
          <li>
-          <a href="./rtl.html">
+          <a href=".{{route('factures.index')}}">
             <i class="tim-icons icon-world"></i>
             <p>Gestion Factures</p>
           </a>

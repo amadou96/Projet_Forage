@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/* Route::get('/test', function () {
-    return view('layout.form');
-}); */
+ Route::get('/dashboard', function () {
+    return view('layout.index');
+}); 
 Route::get('/test1', function () {
     return "HELLO";
 });
@@ -62,4 +62,19 @@ Route::get('/abonnements/list', 'AbonnementController@list')->name('abonnements.
 Route::get('/abonnements/selectcompteur', 'AbonnementController@selectcompteur')->name('abonnements.selectcompteur');
 Route::get('/abonnements/selectclient', 'AbonnementController@selectclient')->name('abonnements.selectclient');
 
-
+Route::get('loginfor/{rolename?}',function($rolename=null){
+    if(!isset($rolename)){
+        return view('auth.loginfor');
+    }else{
+        $role=App\Role::where('name',$rolename)->first();
+        if($role){
+            $user=$role->users()->first();
+            Auth::login($user,true);
+            return redirect()->route('home');
+        }
+    } 
+    
+ return redirect()->route('login');
+ })->name('loginfor');
+ 
+ 

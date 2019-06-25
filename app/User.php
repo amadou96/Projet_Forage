@@ -9,6 +9,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
+class User extends Authenticatable
 /**
  * Class User
  * 
@@ -34,10 +39,10 @@ use Illuminate\Database\Eloquent\Model as Eloquent;
  *
  * @package App
  */
-class User extends Eloquent
+/* class User extends Eloquent */
 {
 	use \Illuminate\Database\Eloquent\SoftDeletes;use \App\Helpers\UuidForKey;
-
+	use Notifiable;
 	protected $casts = [
 		'roles_id' => 'int'
 	];
@@ -90,4 +95,13 @@ class User extends Eloquent
 	{
 		return $this->hasOne(\App\Gestionnaire::class, 'users_id');
 	}
+	public function hasRole($roleName)
+	{
+		return $this->role->name == $roleName;
+	}
+	public function hasAnyRoles($roles)
+	{
+		return in_array($this->role->name,$roles);
+	}
+
 }
