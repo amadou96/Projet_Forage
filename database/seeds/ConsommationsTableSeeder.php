@@ -12,6 +12,6 @@ class ConsommationsTableSeeder extends Seeder
     public function run()
     {
         //
-        factory(App\Consommation::class,100)->create(["factures_id"=>null]);
+        factory(App\Consommation::class,1000)->create(["factures_id"=>null]);
     }
 }
