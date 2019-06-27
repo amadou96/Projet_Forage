@@ -127,6 +127,17 @@
                    
               
           ],
+          dom: 'lfrtipB',
+           buttons: [
+           'copy', 'csv', 'excel', {
+               extend: 'pdfHtml5',
+               exportOptions: {
+                   columns: [ 0, 1, 2]
+               
+           }, 'print','columnsToggle'
+           ],
+           "lengthMenu": [ [10, 25, 50,1000, -1], [10, 25, 50,1000, "All"] ],
+
           });
           $("#table-clients").off('click','.btn-delete-client').on('click','.btn-delete-client',
                     function(){
