@@ -49,10 +49,11 @@ class FactureController extends Controller
      * @param  \App\Facture  $facture
      * @return \Illuminate\Http\Response
      */
-    public function show(Facture $facture)
-    {
-        //
-    }
+     public function show(Facture $facture)
+     {
+         return view('factures.show', compact('facture'));
+         //return $facture;
+     }
 
     /**
      * Show the form for editing the specified resource.

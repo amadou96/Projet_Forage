@@ -57,7 +57,7 @@
           </a>
          </li>
          <li>
-          <a href=".{{route('factures.index')}}">
+          <a href="{{route('factures.index')}}">
             <i class="tim-icons icon-world"></i>
             <p>Gestion Factures</p>
           </a>
